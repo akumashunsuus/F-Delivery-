@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FÉ DELIVERY - Marcas e Produtos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <title>FÉ DELIVERY - Bebidas Geladas na Sua Porta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -13,89 +14,97 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f0f4f8, #d9e4ff);
+      background: linear-gradient(135deg, #1e3a8a, #60a5fa);
       padding: 20px;
       text-align: center;
-      color: #333;
+      color: #fff;
+      background-image: url('https://i.postimg.cc/90j2kQhR/beer-background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
     }
     .logo {
-      max-width: 180px;
-      margin: 20px auto;
+      max-width: 200px;
+      margin: 30px auto;
       display: block;
       transition: transform 0.3s ease;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
     }
     .logo:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
     h1 {
-      color: #1a3c6d;
-      font-size: 2.5rem;
+      color: #fff;
+      font-size: 3rem;
+      font-weight: 700;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     .info-text {
-      font-size: 1rem;
-      color: #555;
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 15px auto;
-      max-width: 600px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-size: 1.1rem;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 700px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
     }
     .brand-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
       max-width: 1200px;
-      margin: 0 auto 30px;
-      padding: 10px;
+      margin: 0 auto 40px;
+      padding: 20px;
       display: none;
     }
     .brand-card {
       background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .brand-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
     .brand-card img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     .brand-name {
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #1a3c6d;
     }
     .product-list {
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
       display: none;
     }
     .product-list h2 {
       color: #1a3c6d;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
       text-align: center;
     }
     .product-list .banner {
       width: 100%;
-      max-height: 120px;
+      max-height: 150px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 20px;
     }
     .product {
@@ -103,13 +112,17 @@
       justify-content: space-between;
       align-items: center;
       margin: 15px 0;
-      padding: 10px;
-      background: #f9f9f9;
-      border-radius: 8px;
+      padding: 15px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+    .product:hover {
+      background: #e2e8f0;
     }
     .product span {
       flex: 1;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #333;
       display: flex;
       align-items: center;
@@ -117,133 +130,160 @@
     .qty-controls {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .qty-controls button {
-      padding: 8px 12px;
-      font-size: 1.2rem;
+      padding: 10px 15px;
+      font-size: 1.3rem;
       border: none;
-      background: #1a3c6d;
+      background: #25D366;
       color: #fff;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
     .qty-controls button:hover {
-      background: #14305a;
+      background: #20b958;
+      transform: scale(1.05);
     }
     .qty-controls input {
-      width: 50px;
+      width: 60px;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 5px;
+      border-radius: 8px;
+      padding: 8px;
     }
     #cart {
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
       display: none;
     }
     #cart h2 {
       color: #1a3c6d;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
       text-align: center;
     }
     #cart ul {
       list-style: none;
       padding: 0;
-      max-height: 250px;
+      max-height: 300px;
       overflow-y: auto;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     #cart li {
-      margin: 10px 0;
-      font-size: 1rem;
+      margin: 15px 0;
+      font-size: 1.1rem;
       color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #cart li::before {
+      content: '\f07a';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: #25D366;
     }
     #cart-delivery-fee {
-      font-size: 1rem;
+      font-size: 1.1rem;
       text-align: right;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       display: none;
     }
     #cart-total {
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       text-align: right;
       color: #1a3c6d;
     }
     #order-form {
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     }
     #order-form h2 {
       color: #1a3c6d;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
       text-align: center;
     }
     #order-form label {
       display: block;
-      margin: 10px 0 5px;
+      margin: 15px 0 5px;
       font-weight: 600;
       color: #1a3c6d;
     }
     #order-form input, #order-form select {
       width: 100%;
-      padding: 10px;
-      font-size: 1rem;
+      padding: 12px;
+      font-size: 1.1rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
       box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    #order-form input:focus, #order-form select:focus {
+      border-color: #25D366;
+      outline: none;
     }
     #order-form button, #cart button, .back-button {
       display: block;
       width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      font-size: 1.1rem;
+      padding: 15px;
+      margin-top: 25px;
+      font-size: 1.2rem;
       background: #25D366;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
     #order-form button:hover, #cart button:hover, .back-button:hover {
       background: #20b958;
+      transform: scale(1.02);
     }
     .back-button {
       background: #6c757d;
-      margin-top: 10px;
+      margin-top: 15px;
     }
     .back-button:hover {
       background: #5a6268;
     }
+    .alert {
+      background: rgba(255, 255, 255, 0.9);
+      color: #1a3c6d;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 700px;
+      display: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
     @media (max-width: 600px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
       .brand-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
       }
       .brand-card img {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
       }
       .product-list, #cart, #order-form {
-        padding: 15px;
+        padding: 20px;
         max-width: 100%;
       }
     }
@@ -253,8 +293,11 @@
   <!-- Logo do FÉ DELIVERY -->
   <img src="https://i.postimg.cc/V6RWbVcP/file-0000000089fc622fa319b47a44a99f65-1.png" alt="FÉ DELIVERY Logo" class="logo" />
   <h1>🍻 FÉ DELIVERY</h1>
+  <div class="info-text">
+    <i class="fas fa-beer-mug-empty"></i> Bem-vindo ao FÉ DELIVERY! Suas bebidas favoritas geladas, entregues rapidinho na sua porta! Preencha seus dados e comece a escolher! 🍹
+  </div>
 
-  <!-- Formulário de Pedido (removido o campo de localização do Google Maps) -->
+  <!-- Formulário de Pedido -->
   <div id="order-form">
     <h2>📋 Informações de Entrega</h2>
     <label for="nome">Nome:</label>
@@ -274,17 +317,18 @@
       <option value="Cartão de Crédito">Cartão de Crédito</option>
       <option value="PIX">PIX</option>
     </select>
-    <p class="info-text">Suas bebidas chegam geladas e você paga apenas na entrega! Garantimos rapidez e qualidade no seu pedido.</p>
-    <button onclick="proceedToBrands()">Continuar</button>
+    <div class="alert" id="form-alert"></div>
+    <button onclick="proceedToBrands()">Escolher Bebidas <i class="fas fa-arrow-right"></i></button>
   </div>
 
   <!-- Seção do Carrinho -->
   <div id="cart">
-    <h2>🛒 Carrinho</h2>
+    <h2>🛒 Seu Carrinho</h2>
+    <div class="alert" id="cart-alert"></div>
     <ul id="cart-items"></ul>
     <div id="cart-delivery-fee">Taxa de Entrega: R$ 8,00</div>
     <div id="cart-total">Total: R$ 0,00</div>
-    <button onclick="sendToWhatsApp()">Enviar Pedido via WhatsApp</button>
+    <button onclick="sendToWhatsApp()">Enviar Pedido via WhatsApp <i class="fab fa-whatsapp"></i></button>
   </div>
 
   <!-- Seção de Budweiser -->
@@ -346,7 +390,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Brahma -->
@@ -392,7 +436,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Corona -->
@@ -422,7 +466,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Spaten -->
@@ -460,7 +504,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Antártica Original -->
@@ -482,7 +526,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Stella Artois -->
@@ -504,7 +548,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Bohemia -->
@@ -542,7 +586,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Skol -->
@@ -612,7 +656,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Heineken -->
@@ -634,10 +678,10 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
-  <!-- Seção de Gelo (removido Gelo em escama 10kg) -->
+  <!-- Seção de Gelo -->
   <div class="product-list" id="products-gelo">
     <h2>Produtos Gelo</h2>
     <div class="product">
@@ -648,7 +692,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
   <!-- Seção de Refrigerantes -->
@@ -807,30 +851,34 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <button class="back-button" onclick="backToBrands()">Voltar para Marcas</button>
+    <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
-  <!-- Grade de Marcas -->
+  <!-- Grade de Marcas (ordenada por preço médio) -->
   <div class="brand-grid" id="brand-grid">
-    <div class="brand-card" onclick="showBrand('budweiser')">
-      <img src="https://i.postimg.cc/63qz6FWy/image-56.webp" alt="Budweiser" />
-      <div class="brand-name">Budweiser</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('brahma')">
-      <img src="https://i.postimg.cc/rpQQkqLB/image-57.webp" alt="Brahma" />
-      <div class="brand-name">Brahma</div>
+    <div class="brand-card" onclick="showBrand('gelo')">
+      <img src="https://i.postimg.cc/HnRngJYv/images-3.jpg" alt="Gelo" />
+      <div class="brand-name">Gelo</div>
     </div>
     <div class="brand-card" onclick="showBrand('corona')">
       <img src="https://i.postimg.cc/tgX2wY8d/image-58.webp" alt="Corona" />
       <div class="brand-name">Corona</div>
     </div>
-    <div class="brand-card" onclick="showBrand('spaten')">
-      <img src="https://i.postimg.cc/hjYsXMvM/image-59.webp" alt="Spaten" />
-      <div class="brand-name">Spaten</div>
+    <div class="brand-card" onclick="showBrand('heineken')">
+      <img src="https://i.postimg.cc/V62BFRM6/Heineken-a62cac22af.png" alt="Heineken" />
+      <div class="brand-name">Heineken</div>
     </div>
     <div class="brand-card" onclick="showBrand('original')">
       <img src="https://i.postimg.cc/kGtcK8tC/image-60.webp" alt="Antártica Original" />
       <div class="brand-name">Antártica Original</div>
+    </div>
+    <div class="brand-card" onclick="showBrand('spaten')">
+      <img src="https://i.postimg.cc/hjYsXMvM/image-59.webp" alt="Spaten" />
+      <div class="brand-name">Spaten</div>
+    </div>
+    <div class="brand-card" onclick="showBrand('budweiser')">
+      <img src="https://i.postimg.cc/63qz6FWy/image-56.webp" alt="Budweiser" />
+      <div class="brand-name">Budweiser</div>
     </div>
     <div class="brand-card" onclick="showBrand('stella')">
       <img src="https://i.postimg.cc/bYDc3Bxy/image-62.webp" alt="Stella Artois" />
@@ -840,21 +888,17 @@
       <img src="https://i.postimg.cc/MZCk4m5y/image-63.webp" alt="Bohemia" />
       <div class="brand-name">Bohemia</div>
     </div>
-    <div class="brand-card" onclick="showBrand('skol')">
-      <img src="https://i.postimg.cc/5jdm30wC/image-64.webp" alt="Skol" />
-      <div class="brand-name">Skol</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('heineken')">
-      <img src="https://i.postimg.cc/V62BFRM6/Heineken-a62cac22af.png" alt="Heineken" />
-      <div class="brand-name">Heineken</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('gelo')">
-      <img src="https://i.postimg.cc/HnRngJYv/images-3.jpg" alt="Gelo" />
-      <div class="brand-name">Logo Gelo</div>
-    </div>
     <div class="brand-card" onclick="showBrand('refrigerantes')">
       <img src="https://i.postimg.cc/Dw62bf4j/image-2025-06-26-T204701-369.webp" alt="Refrigerantes" />
       <div class="brand-name">Refrigerantes</div>
+    </div>
+    <div class="brand-card" onclick="showBrand('brahma')">
+      <img src="https://i.postimg.cc/rpQQkqLB/image-57.webp" alt="Brahma" />
+      <div class="brand-name">Brahma</div>
+    </div>
+    <div class="brand-card" onclick="showBrand('skol')">
+      <img src="https://i.postimg.cc/5jdm30wC/image-64.webp" alt="Skol" />
+      <div class="brand-name">Skol</div>
     </div>
   </div>
 
@@ -897,7 +941,7 @@
       'skol-1l': { nome: 'Skol 1L | Apenas o Líquido', preco: 8.99, marca: 'Skol' },
       'heineken-330ml': { nome: 'Heineken 330ml', preco: 7.89, marca: 'Heineken' },
       'heineken-350ml': { nome: 'Heineken 350ml', preco: 4.64, marca: 'Heineken' },
-      'gelo-cubos-4kg': { nome: 'Gelo em cubos 4kg', preco: 10.00, marca: 'Logo Gelo' },
+      'gelo-cubos-4kg': { nome: 'Gelo em cubos 4kg', preco: 10.00, marca: 'Gelo' },
       'guarana-antarctica-1l': { nome: 'Guaraná Antarctica 1L', preco: 5.19, marca: 'Refrigerantes' },
       'guarana-antarctica-2l': { nome: 'Guaraná Antarctica 2L', preco: 8.69, marca: 'Refrigerantes' },
       'guarana-antarctica-350ml': { nome: 'Guaraná Antarctica 350ml', preco: 2.79, marca: 'Refrigerantes' },
@@ -923,13 +967,13 @@
     const DELIVERY_FEE = 8.00;
 
     function proceedToBrands() {
-      console.log('Função proceedToBrands chamada');
       const nome = document.getElementById('nome')?.value.trim();
       const rua = document.getElementById('rua')?.value.trim();
       const numero = document.getElementById('numero')?.value.trim();
       const bairro = document.getElementById('bairro')?.value.trim();
       const referencia = document.getElementById('referencia')?.value.trim();
       const pagamento = document.getElementById('pagamento')?.value;
+      const formAlert = document.getElementById('form-alert');
 
       const camposFaltantes = [];
       if (!nome) camposFaltantes.push('Nome');
@@ -940,76 +984,63 @@
       if (!pagamento) camposFaltantes.push('Forma de Pagamento');
 
       if (camposFaltantes.length > 0) {
-        alert(`Por favor, corrija os seguintes campos: ${camposFaltantes.join(', ')}.`);
-        console.log('Validação falhou:', { camposFaltantes });
+        formAlert.style.display = 'block';
+        formAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Oops! Preencha os seguintes campos: ${camposFaltantes.join(', ')}.`;
         return;
       }
 
       customerInfo = { nome, rua, numero, bairro, referencia, pagamento };
-      console.log('Informações do cliente armazenadas:', customerInfo);
+      formAlert.style.display = 'block';
+      formAlert.innerHTML = `<i class="fas fa-check-circle"></i> Dados salvos, ${nome}! Agora escolha suas bebidas favoritas!`;
 
       const form = document.getElementById('order-form');
       const cart = document.getElementById('cart');
       const brandGrid = document.getElementById('brand-grid');
       const title = document.querySelector('h1');
 
-      if (!form || !cart || !brandGrid || !title) {
-        console.error('Um ou mais elementos não encontrados:', { form, cart, brandGrid, title });
-        alert('Erro interno: elementos da página não encontrados. Verifique o console para detalhes.');
-        return;
-      }
-
       form.style.display = 'none';
       cart.style.display = 'block';
       brandGrid.style.display = 'grid';
-      title.textContent = '🍻 Escolha sua Marca Preferida';
-      console.log('Interface atualizada: formulário oculto, carrinho e grade de marcas exibidos');
+      title.textContent = '🍻 Escolha Sua Bebida Preferida';
     }
 
     function showBrand(brandId) {
-      console.log(`Função showBrand chamada para: ${brandId}`);
       document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
       const el = document.getElementById('products-' + brandId);
       if (el) {
         el.style.display = 'block';
-        console.log(`Exibindo marca: ${brandId}`);
-      } else {
-        console.error(`Lista de produtos não encontrada para a marca: ${brandId}`);
       }
       updateCart();
     }
 
     function backToBrands() {
-      console.log('Função backToBrands chamada');
       document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
       document.getElementById('brand-grid').style.display = 'grid';
-      console.log('Exibindo grade de marcas');
     }
 
     function changeQty(button, delta) {
-      console.log('Função changeQty chamada', { delta });
       const input = button.parentElement.querySelector('input');
       let value = parseInt(input.value) || 0;
       value += delta;
       if (value < 0) value = 0;
       input.value = value;
-      console.log(`Quantidade alterada: ${value}`);
       updateCart();
+      const cartAlert = document.getElementById('cart-alert');
+      if (value > 0) {
+        const productName = PRODUCTS[input.dataset.produtoId].nome;
+        cartAlert.style.display = 'block';
+        cartAlert.innerHTML = `<i class="fas fa-check-circle"></i> ${value}x ${productName} adicionado ao carrinho!`;
+        setTimeout(() => cartAlert.style.display = 'none', 2000);
+      }
     }
 
     function updateCart() {
-      console.log('Função updateCart chamada');
       const inputs = document.querySelectorAll('.product-list input[type="number"]');
       const list = document.getElementById('cart-items');
       const cartDeliveryFee = document.getElementById('cart-delivery-fee');
       const cartTotal = document.getElementById('cart-total');
       let total = 0;
       let hasItems = false;
-
-      if (!list || !cartDeliveryFee || !cartTotal) {
-        console.error('Elementos cart-items, cart-delivery-fee ou cart-total não encontrados');
-        return;
-      }
 
       list.innerHTML = '';
 
@@ -1033,19 +1064,21 @@
         cartDeliveryFee.textContent = `Taxa de Entrega: R$ ${DELIVERY_FEE.toFixed(2).replace('.', ',')}`;
         const totalWithFee = total + DELIVERY_FEE;
         cartTotal.textContent = `Total: R$ ${totalWithFee.toFixed(2).replace('.', ',')}`;
-        console.log(`Carrinho atualizado, subtotal: R$ ${total.toFixed(2)}, total com taxa: R$ ${totalWithFee.toFixed(2)}`);
       } else {
         cartDeliveryFee.style.display = 'none';
         cartTotal.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
-        console.log(`Carrinho atualizado, sem itens, total: R$ ${total.toFixed(2)}`);
+        const cartAlert = document.getElementById('cart-alert');
+        cartAlert.style.display = 'block';
+        cartAlert.innerHTML = `<i class="fas fa-info-circle"></i> Seu carrinho está vazio. Adicione algumas bebidas!`;
+        setTimeout(() => cartAlert.style.display = 'none', 3000);
       }
     }
 
     function sendToWhatsApp() {
-      console.log('Função sendToWhatsApp chamada');
       const inputs = document.querySelectorAll('.product-list input[type="number"]');
       let cartItems = [];
       let total = 0;
+      const cartAlert = document.getElementById('cart-alert');
 
       inputs.forEach(input => {
         const qtd = parseInt(input.value);
@@ -1060,8 +1093,9 @@
       });
 
       if (cartItems.length === 0) {
-        alert('Seu carrinho está vazio. Adicione produtos antes de enviar o pedido.');
-        console.log('Envio para WhatsApp falhou: carrinho vazio');
+        cartAlert.style.display = 'block';
+        cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Seu carrinho está vazio. Adicione bebidas antes de enviar!`;
+        setTimeout(() => cartAlert.style.display = 'none', 3000);
         return;
       }
 
@@ -1083,17 +1117,21 @@
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
+      cartAlert.style.display = 'block';
+      cartAlert.innerHTML = `<i class="fas fa-check-circle"></i> Pedido enviado com sucesso! Você será redirecionado ao WhatsApp.`;
+      setTimeout(() => cartAlert.style.display = 'none', 3000);
+
       try {
         const newWindow = window.open(whatsappUrl, '_blank');
         if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-          alert('Por favor, permita pop-ups ou abra manualmente: ' + whatsappUrl);
-          console.log('Janela do WhatsApp bloqueada ou falhou');
-        } else {
-          console.log('Janela do WhatsApp aberta com sucesso');
+          cartAlert.style.display = 'block';
+          cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Por favor, permita pop-ups ou abra manualmente: ${whatsappUrl}`;
+          setTimeout(() => cartAlert.style.display = 'none', 5000);
         }
       } catch (e) {
-        alert('Erro ao abrir o WhatsApp. Tente abrir manualmente: ' + whatsappUrl);
-        console.error('Erro ao abrir WhatsApp:', e);
+        cartAlert.style.display = 'block';
+        cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Erro ao abrir o WhatsApp. Tente abrir manualmente: ${whatsappUrl}`;
+        setTimeout(() => cartAlert.style.display = 'none', 5000);
       }
     }
   </script>
