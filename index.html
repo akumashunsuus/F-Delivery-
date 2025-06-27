@@ -18,10 +18,45 @@
       padding: 20px;
       text-align: center;
       color: #fff;
-      background-image: url('https://i.postimg.cc/90j2kQhR/beer-background.jpg');
-      background-size: cover;
-      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
     }
+    /* Fundo animado com bolhas */
+    .bubble-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: bubble-rise 10s infinite ease-in;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    @keyframes bubble-rise {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-1000px) translateX(calc(50px * var(--direction)));
+        opacity: 0;
+      }
+    }
+    .bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 8s; --direction: -1; }
+    .bubble:nth-child(2) { left: 20%; width: 30px; height: 30px; animation-duration: 12s; animation-delay: 1s; --direction: 1; }
+    .bubble:nth-child(3) { left: 30%; width: 15px; height: 15px; animation-duration: 9s; animation-delay: 2s; --direction: -1; }
+    .bubble:nth-child(4) { left: 40%; width: 25px; height: 25px; animation-duration: 11s; animation-delay: 3s; --direction: 1; }
+    .bubble:nth-child(5) { left: 50%; width: 35px; height: 35px; animation-duration: 10s; animation-delay: 4s; --direction: -1; }
+    .bubble:nth-child(6) { left: 60%; width: 20px; height: 20px; animation-duration: 8s; animation-delay: 5s; --direction: 1; }
+    .bubble:nth-child(7) { left: 70%; width: 30px; height: 30px; animation-duration: 13s; animation-delay: 6s; --direction: -1; }
+    .bubble:nth-child(8) { left: 80%; width: 25px; height: 25px; animation-duration: 9s; animation-delay: 7s; --direction: 1; }
     .logo {
       max-width: 200px;
       margin: 30px auto;
@@ -51,13 +86,38 @@
       backdrop-filter: blur(5px);
     }
     .brand-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
       max-width: 1200px;
       margin: 0 auto 40px;
       padding: 20px;
       display: none;
+    }
+    .brand-category {
+      margin-bottom: 30px;
+    }
+    .brand-category h2 {
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    .brand-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #25D366 #f1f5f9;
+    }
+    .brand-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+    .brand-carousel::-webkit-scrollbar-thumb {
+      background: #25D366;
+      border-radius: 4px;
+    }
+    .brand-carousel::-webkit-scrollbar-track {
+      background: #f1f5f9;
     }
     .brand-card {
       background: #fff;
@@ -67,8 +127,8 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      min-width: 150px;
+      flex-shrink: 0;
     }
     .brand-card:hover {
       transform: translateY(-10px);
@@ -84,6 +144,25 @@
       font-size: 1.2rem;
       font-weight: 600;
       color: #1a3c6d;
+    }
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    .carousel-controls button {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .carousel-controls button:hover {
+      background: #20b958;
+      transform: scale(1.05);
     }
     .product-list {
       margin: 30px auto;
@@ -274,9 +353,11 @@
       h1 {
         font-size: 2rem;
       }
-      .brand-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      .brand-carousel {
         gap: 15px;
+      }
+      .brand-card {
+        min-width: 120px;
       }
       .brand-card img {
         width: 90px;
@@ -290,6 +371,18 @@
   </style>
 </head>
 <body>
+  <!-- Fundo animado -->
+  <div class="bubble-background">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
   <!-- Logo do FÉ DELIVERY -->
   <img src="https://i.postimg.cc/V6RWbVcP/file-0000000089fc622fa319b47a44a99f65-1.png" alt="FÉ DELIVERY Logo" class="logo" />
   <h1>🍻 FÉ DELIVERY</h1>
@@ -854,51 +947,78 @@
     <button class="back-button" onclick="backToBrands()">Voltar para Marcas <i class="fas fa-arrow-left"></i></button>
   </div>
 
-  <!-- Grade de Marcas (ordenada por preço médio) -->
+  <!-- Grade de Marcas por Categoria -->
   <div class="brand-grid" id="brand-grid">
-    <div class="brand-card" onclick="showBrand('gelo')">
-      <img src="https://i.postimg.cc/HnRngJYv/images-3.jpg" alt="Gelo" />
-      <div class="brand-name">Gelo</div>
+    <div class="brand-category">
+      <h2>Cervejas</h2>
+      <div class="brand-carousel" id="cervejas-carousel">
+        <div class="brand-card" onclick="showBrand('corona')">
+          <img src="https://i.postimg.cc/tgX2wY8d/image-58.webp" alt="Corona" />
+          <div class="brand-name">Corona</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('heineken')">
+          <img src="https://i.postimg.cc/V62BFRM6/Heineken-a62cac22af.png" alt="Heineken" />
+          <div class="brand-name">Heineken</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('original')">
+          <img src="https://i.postimg.cc/kGtcK8tC/image-60.webp" alt="Antártica Original" />
+          <div class="brand-name">Antártica Original</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('spaten')">
+          <img src="https://i.postimg.cc/hjYsXMvM/image-59.webp" alt="Spaten" />
+          <div class="brand-name">Spaten</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('budweiser')">
+          <img src="https://i.postimg.cc/63qz6FWy/image-56.webp" alt="Budweiser" />
+          <div class="brand-name">Budweiser</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('stella')">
+          <img src="https://i.postimg.cc/bYDc3Bxy/image-62.webp" alt="Stella Artois" />
+          <div class="brand-name">Stella Artois</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('bohemia')">
+          <img src="https://i.postimg.cc/MZCk4m5y/image-63.webp" alt="Bohemia" />
+          <div class="brand-name">Bohemia</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('brahma')">
+          <img src="https://i.postimg.cc/rpQQkqLB/image-57.webp" alt="Brahma" />
+          <div class="brand-name">Brahma</div>
+        </div>
+        <div class="brand-card" onclick="showBrand('skol')">
+          <img src="https://i.postimg.cc/5jdm30wC/image-64.webp" alt="Skol" />
+          <div class="brand-name">Skol</div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button onclick="scrollCarousel('cervejas-carousel', -200)"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="scrollCarousel('cervejas-carousel', 200)"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
-    <div class="brand-card" onclick="showBrand('corona')">
-      <img src="https://i.postimg.cc/tgX2wY8d/image-58.webp" alt="Corona" />
-      <div class="brand-name">Corona</div>
+    <div class="brand-category">
+      <h2>Refrigerantes</h2>
+      <div class="brand-carousel" id="refrigerantes-carousel">
+        <div class="brand-card" onclick="showBrand('refrigerantes')">
+          <img src="https://i.postimg.cc/Dw62bf4j/image-2025-06-26-T204701-369.webp" alt="Refrigerantes" />
+          <div class="brand-name">Refrigerantes</div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button onclick="scrollCarousel('refrigerantes-carousel', -200)"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="scrollCarousel('refrigerantes-carousel', 200)"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
-    <div class="brand-card" onclick="showBrand('heineken')">
-      <img src="https://i.postimg.cc/V62BFRM6/Heineken-a62cac22af.png" alt="Heineken" />
-      <div class="brand-name">Heineken</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('original')">
-      <img src="https://i.postimg.cc/kGtcK8tC/image-60.webp" alt="Antártica Original" />
-      <div class="brand-name">Antártica Original</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('spaten')">
-      <img src="https://i.postimg.cc/hjYsXMvM/image-59.webp" alt="Spaten" />
-      <div class="brand-name">Spaten</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('budweiser')">
-      <img src="https://i.postimg.cc/63qz6FWy/image-56.webp" alt="Budweiser" />
-      <div class="brand-name">Budweiser</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('stella')">
-      <img src="https://i.postimg.cc/bYDc3Bxy/image-62.webp" alt="Stella Artois" />
-      <div class="brand-name">Stella Artois</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('bohemia')">
-      <img src="https://i.postimg.cc/MZCk4m5y/image-63.webp" alt="Bohemia" />
-      <div class="brand-name">Bohemia</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('refrigerantes')">
-      <img src="https://i.postimg.cc/Dw62bf4j/image-2025-06-26-T204701-369.webp" alt="Refrigerantes" />
-      <div class="brand-name">Refrigerantes</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('brahma')">
-      <img src="https://i.postimg.cc/rpQQkqLB/image-57.webp" alt="Brahma" />
-      <div class="brand-name">Brahma</div>
-    </div>
-    <div class="brand-card" onclick="showBrand('skol')">
-      <img src="https://i.postimg.cc/5jdm30wC/image-64.webp" alt="Skol" />
-      <div class="brand-name">Skol</div>
+    <div class="brand-category">
+      <h2>Gelo</h2>
+      <div class="brand-carousel" id="gelo-carousel">
+        <div class="brand-card" onclick="showBrand('gelo')">
+          <img src="https://i.postimg.cc/HnRngJYv/images-3.jpg" alt="Gelo" />
+          <div class="brand-name">Gelo</div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button onclick="scrollCarousel('gelo-carousel', -200)"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="scrollCarousel('gelo-carousel', 200)"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
   </div>
 
@@ -1000,7 +1120,7 @@
 
       form.style.display = 'none';
       cart.style.display = 'block';
-      brandGrid.style.display = 'grid';
+      brandGrid.style.display = 'block';
       title.textContent = '🍻 Escolha Sua Bebida Preferida';
     }
 
@@ -1015,7 +1135,14 @@
 
     function backToBrands() {
       document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
-      document.getElementById('brand-grid').style.display = 'grid';
+      document.getElementById('brand-grid').style.display = 'block';
+    }
+
+    function scrollCarousel(carouselId, amount) {
+      const carousel = document.getElementById(carouselId);
+      if (carousel) {
+        carousel.scrollBy({ left: amount, behavior: 'smooth' });
+      }
     }
 
     function changeQty(button, delta) {
@@ -1073,67 +1200,3 @@
         setTimeout(() => cartAlert.style.display = 'none', 3000);
       }
     }
-
-    function sendToWhatsApp() {
-      const inputs = document.querySelectorAll('.product-list input[type="number"]');
-      let cartItems = [];
-      let total = 0;
-      const cartAlert = document.getElementById('cart-alert');
-
-      inputs.forEach(input => {
-        const qtd = parseInt(input.value);
-        const produtoId = input.dataset.produtoId;
-        const marca = input.dataset.marca;
-        const productData = PRODUCTS[produtoId];
-        if (qtd > 0 && productData && marca) {
-          const subtotal = qtd * productData.preco;
-          cartItems.push(`${qtd}x ${marca} - ${productData.nome} – R$ ${productData.preco.toFixed(2).replace('.', ',')} = R$ ${subtotal.toFixed(2).replace('.', ',')}`);
-          total += subtotal;
-        }
-      });
-
-      if (cartItems.length === 0) {
-        cartAlert.style.display = 'block';
-        cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Seu carrinho está vazio. Adicione bebidas antes de enviar!`;
-        setTimeout(() => cartAlert.style.display = 'none', 3000);
-        return;
-      }
-
-      const endereco = `${customerInfo.rua}, ${customerInfo.numero}, ${customerInfo.bairro}`;
-      const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
-
-      let message = `*Novo Pedido - FÉ DELIVERY*\n\n` +
-                    `*Cliente:* ${customerInfo.nome}\n` +
-                    `*Endereço:* ${endereco}\n` +
-                    `*Link do Google Maps:* ${mapsLink}\n` +
-                    `*Referência:* ${customerInfo.referencia}\n` +
-                    `*Forma de Pagamento:* ${customerInfo.pagamento}\n` +
-                    `*Observação:* Pagamento na entrega, bebidas geladas!\n\n` +
-                    `*Itens do Pedido:*\n${cartItems.join('\n')}\n\n` +
-                    `*Taxa de Entrega:* R$ ${DELIVERY_FEE.toFixed(2).replace('.', ',')}\n` +
-                    `*Total:* R$ ${(total + DELIVERY_FEE).toFixed(2).replace('.', ',')}`;
-
-      const phoneNumber = '+559191354884';
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-      cartAlert.style.display = 'block';
-      cartAlert.innerHTML = `<i class="fas fa-check-circle"></i> Pedido enviado com sucesso! Você será redirecionado ao WhatsApp.`;
-      setTimeout(() => cartAlert.style.display = 'none', 3000);
-
-      try {
-        const newWindow = window.open(whatsappUrl, '_blank');
-        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-          cartAlert.style.display = 'block';
-          cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Por favor, permita pop-ups ou abra manualmente: ${whatsappUrl}`;
-          setTimeout(() => cartAlert.style.display = 'none', 5000);
-        }
-      } catch (e) {
-        cartAlert.style.display = 'block';
-        cartAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> Erro ao abrir o WhatsApp. Tente abrir manualmente: ${whatsappUrl}`;
-        setTimeout(() => cartAlert.style.display = 'none', 5000);
-      }
-    }
-  </script>
-</body>
-</html>
