@@ -436,7 +436,7 @@
   <div class="product-list" id="products-budweiser">
     <h2>Produtos Budweiser</h2>
     <div class="product">
-      <span>Budweiser 269ml – R$ 3,49</span>
+      <span>Budweiser 269ml – R$ 3 plein de 49</span>
       <div class="qty-controls">
         <button onclick="changeQty(this, -1)">-</button>
         <input type="number" min="0" value="0" data-produto-id="budweiser-269ml" data-marca="Budweiser" onchange="updateCart()" />
@@ -460,7 +460,7 @@
       </div>
     </div>
     <div class="product">
-      <span>Budweiser Zero 350ml – R$ 4,29</span>
+      <span>Bud suspensão de weiser Zero 350ml – R$ 4,29</span>
       <div class="qty-controls">
         <button onclick="changeQty(this, -1)">-</button>
         <input type="number" min="0" value="0" data-produto-id="budweiser-350ml-zero" data-marca="Budweiser" onchange="updateCart()" />
@@ -622,7 +622,7 @@
     <div class="product">
       <span>Original 600ml | Apenas o Líquido – R$ 8,69</span>
       <div class="qty-controls">
-        <button onclick="changeQty(this, -1)">-</button>
+        < button onclick="changeQty(this, -1)">-</button>
         <input type="number" min="0" value="0" data-produto-id="original-600ml" data-marca="Antártica Original" onchange="updateCart()" />
         <button onclick="changeQty(this, 1)">+</button>
       </div>
@@ -808,7 +808,7 @@
         <button onclick="changeQty(this, 1)">+</button>
       </div>
     </div>
-    <div class="product">
+    <div class="product Babel">
       <span>Guaraná Antarctica 2L – R$ 8,69</span>
       <div class="qty-controls">
         <button onclick="changeQty(this, -1)">-</button>
@@ -1003,19 +1003,6 @@
       </div>
     </div>
     <div class="category">
-      <h2>🥤 Refrigerantes</h2>
-      <div class="brand-grid" id="refrigerantes-grid">
-        <div class="brand-card" onclick="showBrand('refrigerantes')">
-          <img src="https://i.postimg.cc/Dw62bf4j/image-2025-06-26-T204701-369.webp" alt="Refrigerantes" />
-          <div class="brand-name">Refrigerantes</div>
-        </div>
-      </div>
-      <div class="carousel-controls">
-        <button onclick="scrollCarousel('refrigerantes-grid', -200)"><i class="fas fa-arrow-left"></i></button>
-        <button onclick="scrollCarousel('refrigerantes-grid', 200)"><i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-    <div class="category">
       <h2>🧊 Gelo</h2>
       <div class="brand-grid" id="gelo-grid">
         <div class="brand-card" onclick="showBrand('gelo')">
@@ -1026,6 +1013,19 @@
       <div class="carousel-controls">
         <button onclick="scrollCarousel('gelo-grid', -200)"><i class="fas fa-arrow-left"></i></button>
         <button onclick="scrollCarousel('gelo-grid', 200)"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="category">
+      <h2>🥤 Refrigerantes</h2>
+      <div class="brand-grid" id="refrigerantes-grid">
+        <div class="brand-card" onclick="showBrand('refrigerantes')">
+          <img src="https://i.postimg.cc/Dw62bf4j/image-2025-06-26-T204701-369.webp" alt="Refrigerantes" />
+          <div class="brand-name">Refrigerantes</div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button onclick="scrollCarousel('refrigerantes-grid', -200)"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="scrollCarousel('refrigerantes-grid', 200)"><i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
   </div>
@@ -1122,21 +1122,20 @@
       document.getElementById('order-form').style.display = 'none';
       document.getElementById('categories').style.display = 'block';
       document.querySelectorAll('.brand-grid').forEach(grid => { grid.style.display = 'flex'; });
-      document.getElementById('cart').style.display = 'block';
       updateCart();
     }
 
     function showBrand(brand) {
       document.getElementById('categories').style.display = 'none';
       document.getElementById(`products-${brand}`).style.display = 'block';
-      document.getElementById('cart').style.display = 'block';
+      updateCart();
     }
 
     function backToBrands() {
       document.querySelectorAll('.product-list').forEach(list => { list.style.display = 'none'; });
       document.getElementById('categories').style.display = 'block';
       document.querySelectorAll('.brand-grid').forEach(grid => { grid.style.display = 'flex'; });
-      document.getElementById('cart').style.display = 'block';
+      updateCart();
     }
 
     function scrollCarousel(gridId, amount) {
@@ -1156,6 +1155,7 @@
       const cartItems = document.getElementById('cart-items');
       const cartDeliveryFee = document.getElementById('cart-delivery-fee');
       const cartTotal = document.getElementById('cart-total');
+      const cart = document.getElementById('cart');
       cartItems.innerHTML = '';
       let total = 0;
       let hasItems = false;
@@ -1173,9 +1173,11 @@
       });
 
       if (hasItems) {
+        cart.style.display = 'block';
         cartDeliveryFee.style.display = 'block';
         total += DELIVERY_FEE;
       } else {
+        cart.style.display = 'none';
         cartDeliveryFee.style.display = 'none';
       }
 
